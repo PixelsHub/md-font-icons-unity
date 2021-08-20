@@ -9,15 +9,16 @@ namespace Google.MaterialDesign.Icons
 
 public class MaterialIconTMP : TMPro.TextMeshProUGUI
 {
-	[HideInInspector] [SerializeField] int fontStyleIndex = 0;
-	[HideInInspector] [SerializeField] MaterialIconConfig iconConfig;
+	[SerializeField] int styleIndex = 0;
+	[SerializeField] MaterialIconConfig iconConfig;
 	public string iconUnicode
 	{
 		get { return System.Convert.ToString(char.ConvertToUtf32(base.text, 0), 16); }
 		set { base.text = char.ConvertFromUtf32(System.Convert.ToInt32(value, 16)); }
 	}
 
-	public MaterialIconConfig.FontStyle FontStyleData { get { if (iconConfig == null) return default(MaterialIconConfig.FontStyle); else return iconConfig.FontStyles[fontStyleIndex];  } }
+	public MaterialIconConfig.FontStyle FontStyleData { get { if (iconConfig == null) return default(MaterialIconConfig.FontStyle); else return iconConfig.FontStyles[styleIndex];  } }
+	public MaterialIconConfig IconConfig { get { return iconConfig; } }
 
 	protected override void Start()
 	{
@@ -47,7 +48,7 @@ public class MaterialIconTMP : TMPro.TextMeshProUGUI
 	protected override void OnValidate()
 	{
 		if (iconConfig == null) LoadConfig();
-		if (iconConfig != null) base.font = (TMP_FontAsset) iconConfig.FontStyles[fontStyleIndex].TMP_Font;
+		if (iconConfig != null) base.font = (TMP_FontAsset) iconConfig.FontStyles[styleIndex].TMP_Font;
 			base.LoadFontAsset();
             base.OnValidate();
 		base.SetLayoutDirty();
@@ -62,7 +63,7 @@ public class MaterialIconTMP : TMPro.TextMeshProUGUI
 		{
 			string assetPath = UnityEditor.AssetDatabase.GUIDToAssetPath(guid[0]);
 			iconConfig = UnityEditor.AssetDatabase.LoadAssetAtPath<MaterialIconConfig>(assetPath);
-			base.font = (TMP_FontAsset)iconConfig.FontStyles[fontStyleIndex].TMP_Font;
+			base.font = (TMP_FontAsset)iconConfig.FontStyles[styleIndex].TMP_Font;
 				base.LoadFontAsset();
             }
 	}

@@ -16,8 +16,9 @@ public class MaterialIconTMPEditor : Editor
 
 	private SerializedProperty spText;
 	private SerializedProperty spColor;
+	private SerializedProperty spStyleIndex;
 	private SerializedProperty spRaycastTarget;
-	private SerializedProperty spAlignment;
+	//private SerializedProperty spAlignment;
 
 	private MaterialIconTMP icon;
 	private Font MaterialIconsRegular;
@@ -48,13 +49,12 @@ public class MaterialIconTMPEditor : Editor
 		iconStyle.normal.textColor = iconStyle.active.textColor = iconStyle.focused.textColor = iconStyle.hover.textColor = EditorGUIUtility.isProSkin ? lightColor : darkColor;
 
 		iconTooltip = new GUIContent(string.Empty, icon.iconUnicode);
-			//SerializedProperty prop = serializedObject.GetIterator();
-			//Debug.Log(prop.name);
-			//while (prop.Next(true)) { Debug.Log(prop.name);  };
+
 		spText = serializedObject.FindProperty("m_text");
 		spColor = serializedObject.FindProperty("m_fontColor");
+		spStyleIndex = serializedObject.FindProperty("styleIndex");
 		spRaycastTarget = serializedObject.FindProperty("m_RaycastTarget");
-		spAlignment = serializedObject.FindProperty("m_FontData.m_fontAlignment");
+		//spAlignment = serializedObject.FindProperty("m_FontData.m_fontAlignment");
 	}
 
 	public override void OnInspectorGUI()
@@ -69,7 +69,11 @@ public class MaterialIconTMPEditor : Editor
 
 		EditorGUILayout.Space();
 
-		EditorGUI.BeginDisabledGroup(MaterialIconsRegular == null);
+			DoIconStylesDropdown(spStyleIndex, icon.IconConfig);
+
+			EditorGUILayout.Space();
+
+			EditorGUI.BeginDisabledGroup(MaterialIconsRegular == null);
 
 		Rect iconRect = GUILayoutUtility.GetRect(EditorGUIUtility.singleLineHeight * 3f, EditorGUIUtility.singleLineHeight * 3f, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(false));
 		DoIconControl(iconRect, spText, () => {
@@ -91,7 +95,7 @@ public class MaterialIconTMPEditor : Editor
 		EditorGUILayout.Space();
 
 		Rect alignmentRect = GUILayoutUtility.GetRect(EditorGUIUtility.singleLineHeight, EditorGUIUtility.singleLineHeight, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(false));
-		DoTextAlignmentControl(alignmentRect, spAlignment);
+		//DoTextAlignmentControl(alignmentRect, spAlignment);
 
 		serializedObject.ApplyModifiedProperties();
 	}
@@ -137,6 +141,23 @@ public class MaterialIconTMPEditor : Editor
 		{
 			Debug.LogException(e);
 		}
+	}
+
+	private static void DoIconStylesDropdown(SerializedProperty index, MaterialIconConfig config)
+    {
+			if (!config) EditorGUILayout.HelpBox("Could not find font styles config asset.", MessageType.Error);
+			else
+			{
+
+				string[] options = new string[config.FontStyles.Length];
+				for (int i = 0; i < options.Length; i++)
+				{
+					options[i] = config.FontStyles[i].StyleName;
+				}
+
+				index.intValue = EditorGUILayout.Popup("Icon Style", index.intValue, options);
+            }
+
 	}
 
 }
