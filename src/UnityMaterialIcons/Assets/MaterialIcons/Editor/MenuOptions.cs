@@ -32,7 +32,7 @@ internal static class MenuOptions
 			parent = canvas;
 		}
 
-		GameObject gameObject = new GameObject("MaterialIcon", typeof(MaterialIcon));
+		GameObject gameObject = new GameObject("MaterialIcon", typeof(MaterialIconUGUI));
 		gameObject.layer = LayerMask.NameToLayer("UI");
 		GameObjectUtility.SetParentAndAlign(gameObject, parent);
 		Undo.RegisterCreatedObjectUndo(gameObject, "Create " + gameObject.name);
