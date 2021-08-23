@@ -14,6 +14,7 @@ public class MaterialIconUGUIEditor : UnityEditor.UI.TextEditor
 
 	private SerializedProperty spText;
 	private SerializedProperty spColor;
+	private SerializedProperty spStyleIndex;
 	private SerializedProperty spRaycastTarget;
 	private SerializedProperty spAlignment;
 
@@ -37,7 +38,7 @@ public class MaterialIconUGUIEditor : UnityEditor.UI.TextEditor
 			icon.LoadConfig();
 		}
 
-		MaterialIconsRegular = icon.font;
+		MaterialIconsRegular = icon.FontStyleData.Font;
 
 		iconStyle = new GUIStyle();
 		iconStyle.font = MaterialIconsRegular;
@@ -48,7 +49,9 @@ public class MaterialIconUGUIEditor : UnityEditor.UI.TextEditor
 		iconTooltip = new GUIContent(string.Empty, icon.iconUnicode);
 
 		spText = serializedObject.FindProperty("m_Text");
+
 		spColor = serializedObject.FindProperty("m_Color");
+		spStyleIndex = serializedObject.FindProperty("styleIndex");
 		spRaycastTarget = serializedObject.FindProperty("m_RaycastTarget");
 		spAlignment = serializedObject.FindProperty("m_FontData.m_Alignment");
 	}
@@ -64,12 +67,13 @@ public class MaterialIconUGUIEditor : UnityEditor.UI.TextEditor
 		}
 
 		EditorGUILayout.Space();
+		DoIconStylesDropdown(spStyleIndex, icon.IconConfig);
 
 		EditorGUI.BeginDisabledGroup(MaterialIconsRegular == null);
 
 		Rect iconRect = GUILayoutUtility.GetRect(EditorGUIUtility.singleLineHeight * 3f, EditorGUIUtility.singleLineHeight * 3f, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(false));
 		DoIconControl(iconRect, spText, () => {
-			MaterialIconSelectionWindow.Init(MaterialIconsRegular, spText.stringValue, (selected) => {
+			MaterialIconSelectionWindow.Init(icon.FontStyleData, spText.stringValue, (selected) => {
 				spText.stringValue = selected;
 				serializedObject.ApplyModifiedProperties();
 				iconTooltip.tooltip = icon.iconUnicode;
@@ -135,6 +139,23 @@ public class MaterialIconUGUIEditor : UnityEditor.UI.TextEditor
 		}
 	}
 
-}
+	private static void DoIconStylesDropdown(SerializedProperty index, MaterialIconConfig config)
+	{
+		if (!config) EditorGUILayout.HelpBox("Could not find font styles config asset.", MessageType.Error);
+		else
+		{
+
+			string[] options = new string[config.FontStyles.Length];
+			for (int i = 0; i < options.Length; i++)
+			{
+				options[i] = config.FontStyles[i].StyleName;
+			}
+
+			index.intValue = EditorGUILayout.Popup("Icon Style", index.intValue, options);
+		}
+
+	}
+
+	}
 
 }

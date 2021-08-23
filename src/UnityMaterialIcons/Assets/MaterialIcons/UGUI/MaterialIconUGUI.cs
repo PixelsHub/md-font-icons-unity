@@ -7,10 +7,13 @@ namespace Google.MaterialDesign.Icons
 
 public class MaterialIconUGUI : Text
 {
-		[HideInInspector] [SerializeField] int fontStyleIndex = 0;
+		[HideInInspector] [SerializeField] int styleIndex = 0;
 		[HideInInspector] [SerializeField] MaterialIconConfig iconConfig;
 
-	public string iconUnicode
+		public MaterialIconConfig.FontStyle FontStyleData { get { if (iconConfig == null) return default(MaterialIconConfig.FontStyle); else return iconConfig.FontStyles[styleIndex]; } }
+		public MaterialIconConfig IconConfig { get { return iconConfig; } }
+
+		public string iconUnicode
 	{
 		get { return System.Convert.ToString(char.ConvertToUtf32(base.text, 0), 16); }
 		set { base.text = char.ConvertFromUtf32(System.Convert.ToInt32(value, 16)); }
@@ -44,7 +47,7 @@ public class MaterialIconUGUI : Text
 	protected override void OnValidate()
 	{
 		if (iconConfig == null) LoadConfig();
-		if(iconConfig != null) base.font = iconConfig.FontStyles[fontStyleIndex].Font;
+		if(iconConfig != null) base.font = iconConfig.FontStyles[styleIndex].Font;
 		base.OnValidate();
 		base.SetLayoutDirty();
 	}
@@ -58,6 +61,7 @@ public class MaterialIconUGUI : Text
         {
 			string assetPath = UnityEditor.AssetDatabase.GUIDToAssetPath(guid[0]);
 			iconConfig = UnityEditor.AssetDatabase.LoadAssetAtPath<MaterialIconConfig>(assetPath);
+			base.font = iconConfig.FontStyles[styleIndex].Font;
 		}
 	}
 	#endif

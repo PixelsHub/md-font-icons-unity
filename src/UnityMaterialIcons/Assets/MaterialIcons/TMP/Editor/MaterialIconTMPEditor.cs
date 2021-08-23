@@ -77,7 +77,7 @@ public class MaterialIconTMPEditor : Editor
 
 		Rect iconRect = GUILayoutUtility.GetRect(EditorGUIUtility.singleLineHeight * 3f, EditorGUIUtility.singleLineHeight * 3f, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(false));
 		DoIconControl(iconRect, spText, () => {
-			MaterialIconSelectionWindow.Init(MaterialIconsRegular, spText.stringValue, (selected) => {
+			MaterialIconSelectionWindow.Init(icon.FontStyleData, spText.stringValue, (selected) => {
 				spText.stringValue = selected;
 				serializedObject.ApplyModifiedProperties();
 				iconTooltip.tooltip = icon.iconUnicode;

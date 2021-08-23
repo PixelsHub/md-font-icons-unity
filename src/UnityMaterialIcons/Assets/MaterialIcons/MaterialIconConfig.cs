@@ -10,18 +10,39 @@ public class MaterialIconConfig : ScriptableObject
     {
         [SerializeField] string styleName;
         [SerializeField] Font baseFont;
-        [SerializeField] Object tmp_Font;
-
-        public string StyleName {  get {  return styleName; } }
-        public Font Font {  get { return baseFont; } }
-        public Object TMP_Font {  get {  return tmp_Font; }  }
-
+        [SerializeField] Object tmpFont;
+        [SerializeField] TextAsset codepoints;
+        [SerializeField] public bool copyHexCodesToClipboard;
+        public string StyleName { get { return styleName; } }
+        public Font Font { get { return baseFont; } }
+        public Object TMP_Font { get { return tmpFont; } }
+        public string Codepoints { get { return codepoints.text; } }
     }
 
 
     [SerializeField] FontStyle[] fontStyles;
-    [SerializeField] TextAsset codepoints;
 
-    public FontStyle[] FontStyles {  get {  return fontStyles; } }
-    public TextAsset Codepoints {  get {  return codepoints; } }
+    public FontStyle[] FontStyles { get { return fontStyles; } }
+
+    void OnValidate()
+    {
+        for (int i = 0; i < fontStyles.Length; i++)
+        {
+            if (fontStyles[i].copyHexCodesToClipboard)
+            {
+                string hex = "";
+                foreach (string codepoint in fontStyles[i].Codepoints.Split('\n'))
+                {
+                    if (codepoint.Trim().Length == 0) continue;
+                    string[] data = codepoint.Split(' ');
+                    
+                    if (hex != "") hex += ",";
+                    hex += data[1];
+                }
+
+                GUIUtility.systemCopyBuffer = hex;
+                fontStyles[i].copyHexCodesToClipboard = false;
+            }
+        }
+    }
 }

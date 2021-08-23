@@ -27,7 +27,7 @@ public class MaterialIconSelectionWindow : EditorWindow
 	private bool selectionKeep;
 	private System.Action<string> onSelectionChanged;
 
-	private Font MaterialIconsRegular;
+	private Font font;
 	private CodepointData[] codepointsCollection;
 	private CodepointData[] filteredCollection;
 
@@ -39,22 +39,18 @@ public class MaterialIconSelectionWindow : EditorWindow
 	private GUIStyle iconLabelStyle;
 	private GUIStyle iconSelectionStyle;
 
-	public void LoadDependencies(Font MaterialIconsRegular)
+	public void LoadDependencies(MaterialIconConfig.FontStyle fontStyle)
 	{
 		showNames = EditorPrefs.GetBool(typeof(MaterialIconSelectionWindow) + ".showNames", true);
 
-		if(MaterialIconsRegular == null)
-			return;
-
-		this.MaterialIconsRegular = MaterialIconsRegular;
-
-		string fontPath = AssetDatabase.GetAssetPath(MaterialIconsRegular);
-		string codepointsPath = Path.GetDirectoryName(fontPath) + "/codepoints";
+		this.font = fontStyle.Font;
 
 		List<CodepointData> tempList = new List<CodepointData>();
 
-		foreach(string codepoint in File.ReadAllLines(codepointsPath))
+
+		foreach(string codepoint in fontStyle.Codepoints.Split('\n'))
 		{
+			if (codepoint.Trim().Length == 0) continue;
 			string[] data = codepoint.Split(' ');
 			tempList.Add(new CodepointData(data[0], data[1]));
 		}
@@ -67,12 +63,12 @@ public class MaterialIconSelectionWindow : EditorWindow
 			selectedName = temp.name;
 	}
 
-	public static void Init(Font MaterialIconsRegular, string preSelect, System.Action<string> callback)
+	public static void Init(MaterialIconConfig.FontStyle fontStyle, string preSelect, System.Action<string> callback)
 	{
 		MaterialIconSelectionWindow window = EditorWindow.GetWindow<MaterialIconSelectionWindow>(true);
 		window.selected = preSelect;
 		window.onSelectionChanged = callback;
-		window.LoadDependencies(MaterialIconsRegular);
+		window.LoadDependencies(fontStyle);
 	}
 
 	private void OnEnable()
@@ -91,13 +87,13 @@ public class MaterialIconSelectionWindow : EditorWindow
 			toolbarSeachCancelButtonEmptyStyle = new GUIStyle("ToolbarSeachCancelButtonEmpty");
 			toolbarLabelStyle = new GUIStyle(EditorStyles.label) { alignment = TextAnchor.MiddleCenter };
 			iconSelectionStyle = new GUIStyle("selectionrect");
-			iconImageStyle = new GUIStyle() { font = MaterialIconsRegular, fontSize = iconSize - spacing - 10, alignment = TextAnchor.MiddleCenter };
+			iconImageStyle = new GUIStyle() { font = font, fontSize = iconSize - spacing - 10, alignment = TextAnchor.MiddleCenter };
 			iconLabelStyle = new GUIStyle(EditorStyles.miniLabel) { alignment = TextAnchor.UpperCenter, wordWrap = true };
 			iconImageStyle.padding = iconLabelStyle.padding = new RectOffset();
 			iconImageStyle.normal.textColor = iconLabelStyle.normal.textColor = EditorGUIUtility.isProSkin ? lightColor : darkColor;
 		}
 
-		if(MaterialIconsRegular == null)
+		if(font == null)
 		{
 			EditorGUILayout.HelpBox("Could not find \"MaterialIcons-Regular\" font data.", MessageType.Error);
 			return;

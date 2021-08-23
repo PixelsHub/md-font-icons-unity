@@ -15,4 +15,21 @@ MonoBehaviour:
   fontStyles:
   - styleName: Regular
     baseFont: {fileID: 12800000, guid: 7aa8a800795d9664a864b2be473b4518, type: 3}
-    tmp_Font: {fileID: 11400000, guid: c97cda628b76be84f87a58d32743d871, type: 2}
+    tmpFont: {fileID: 11400000, guid: c97cda628b76be84f87a58d32743d871, type: 2}
+    codepoints: {fileID: 4900000, guid: 18f83fb491a276246a86732f87cbb644, type: 3}
+    copyHexCodesToClipboard: 0
+  - styleName: Outlined
+    baseFont: {fileID: 12800000, guid: 88fe8928b97c2034f9947b01bc57b5bf, type: 3}
+    tmpFont: {fileID: 11400000, guid: 6d1a1bb8a2972d343a30300e46597436, type: 2}
+    codepoints: {fileID: 4900000, guid: 3979f4a71fb9a8247be01cac5a4c15e9, type: 3}
+    copyHexCodesToClipboard: 0
+  - styleName: Round
+    baseFont: {fileID: 12800000, guid: d898e179b3508b64a9aea9657d5d0dc4, type: 3}
+    tmpFont: {fileID: 11400000, guid: 31f1b5886a04ccc4da178f36035bde1a, type: 2}
+    codepoints: {fileID: 4900000, guid: 3dbe00f400637ee4987a2a95de1a5296, type: 3}
+    copyHexCodesToClipboard: 0
+  - styleName: Sharp
+    baseFont: {fileID: 12800000, guid: 4cbd867237c5bd244b01979435b0f85d, type: 3}
+    tmpFont: {fileID: 11400000, guid: 8bb343714fd1d6d46a99d132ce27f0d6, type: 2}
+    codepoints: {fileID: 4900000, guid: ff8503931b501de42b90cb86b13c97b8, type: 3}
+    copyHexCodesToClipboard: 0
