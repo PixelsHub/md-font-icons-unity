@@ -1,16 +1,28 @@
-# Unity Material Icons
 
-[![paypal](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YAUUBSC3KYUEC&source=url)
+# Material Design Font Icons for Unity
 
-This project simplifies the usage of Google's Material Design icons on Unity.
+## About
 
-Developed on Unity 2017, but should be compatible with all versions.
+This project is a fork/improvement from [Convalise/unity-material-icons](https://github.com/convalise/unity-material-icons).
+
+This projects adds capability to use Google's Material Design icon fonts in unity 3D, using text and avoiding the need for importing sprites.
+
+The original was developed on Unity 2017, this fork was developed in Unity 2020 LTS, but should keep compatibility with previous Unity versions (not tested).
+
+### Changes from original
+
+- Prepared to work as a Unity Package
+- Added support for TextMeshPro
+- Added support for multiple font types (rounded, outlined...)
+
+## Usage
+
+Just add a `Material Icon UGUI` on a canvas for the UGUI version (using Unity's `Text` component) or a `Material Icon TMP` for the TextMeshPro version.
+
 
 ![preview](doc/preview.png)
 
 ## Credits
-
-This project was created by Conrado (https://github.com/convalise).
 
 It makes usage of the [Material Design icons project by Google](https://github.com/google/material-design-icons).\
 More information on the Google's project can be found at the [Material Icons Guide](http://google.github.io/material-design-icons/).
