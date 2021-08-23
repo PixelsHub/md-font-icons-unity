@@ -15,6 +15,17 @@ The original was developed on Unity 2017, this fork was developed in Unity 2020 
 - Added support for TextMeshPro
 - Added support for multiple font types (rounded, outlined...)
 
+## Installation
+
+### Package Manager
+
+1. Open Unity's Package Manager, click the `+` button and select `Add package from git URL`
+2. Copy `https://github.com/PixelsHub/md-font-icons-unity.git?path=/com.pixelshub.mdfonticons` in the text box and confirm, the package should install.
+
+### Manually
+
+Just copy the `com.pixelshub.mdfonticons` folder into your Unity Project assets or packages folder.
+
 ## Usage
 
 Just add a `Material Icon UGUI` on a canvas for the UGUI version (using Unity's `Text` component) or a `Material Icon TMP` for the TextMeshPro version.
