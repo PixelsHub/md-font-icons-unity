@@ -9,8 +9,8 @@ namespace Google.MaterialDesign.Icons
 
 internal static class MenuOptions
 {
-	[MenuItem("GameObject/Google/Material Icon", false, 10)]
-	public static void CreateMaterialIcon(MenuCommand menuCommand)
+	//[MenuItem("GameObject/Google/Material Icon", false, 10)]
+	public static void CreateMaterialIcon<T>(MenuCommand menuCommand)
 	{
 		GameObject parent = menuCommand.context as GameObject;
 
@@ -32,7 +32,7 @@ internal static class MenuOptions
 			parent = canvas;
 		}
 
-		GameObject gameObject = new GameObject("MaterialIcon", typeof(MaterialIconUGUI));
+		GameObject gameObject = new GameObject("MaterialIcon", typeof(T));
 		gameObject.layer = LayerMask.NameToLayer("UI");
 		GameObjectUtility.SetParentAndAlign(gameObject, parent);
 		Undo.RegisterCreatedObjectUndo(gameObject, "Create " + gameObject.name);

@@ -377,7 +377,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uF21E"
+  m_Text: "\uE853"
   styleIndex: 0
   iconConfig: {fileID: 11400000, guid: cc46dd300543af84fb85b50407270bce, type: 2}
 --- !u!222 &1546007530
@@ -445,7 +445,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uE85E"
+  m_text: "\uE853"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d1a1bb8a2972d343a30300e46597436, type: 2}
   m_sharedMaterial: {fileID: 4099546908504449436, guid: 6d1a1bb8a2972d343a30300e46597436,

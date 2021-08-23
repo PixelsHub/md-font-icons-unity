@@ -1,0 +1,16 @@
+{
+    "name": "UGUI",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1daab8ab168b8844299de2537399aaf5"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
