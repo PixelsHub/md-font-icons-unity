@@ -24,13 +24,13 @@ namespace Google.MaterialDesign.Icons
             }
         }
 
-        public void LoadFont()
+        void LoadFont()
         {
             base.font = (TMP_FontAsset)icon.Font.TMP_Font;
             base.LoadFontAsset();
         }
 
-        public void Init()
+        void Init()
         {
             base.text = "\ue84d";
             base.font = null;
@@ -63,6 +63,13 @@ namespace Google.MaterialDesign.Icons
             base.LoadFontAsset();
             base.OnValidate();
             base.SetLayoutDirty();
+        }
+
+        public void UpdateIcon(MDTextIcon icon)
+        {
+            this.icon = icon;
+            LoadFont();
+            base.text = icon.Text;
         }
 #endif
 

@@ -40,6 +40,13 @@ namespace Google.MaterialDesign.Icons
             base.fontSize = Mathf.FloorToInt(Mathf.Min(base.rectTransform.rect.width, base.rectTransform.rect.height));
         }
 
+        public void UpdateIcon(MDTextIcon icon)
+        {
+            this.icon = icon;
+            base.font = icon.Font.Font;
+            base.text = icon.Text;
+        }
+
 #if UNITY_EDITOR
         protected override void Reset()
         {
@@ -55,6 +62,7 @@ namespace Google.MaterialDesign.Icons
             base.SetLayoutDirty();
         }
 #endif
+
 
     }
 
