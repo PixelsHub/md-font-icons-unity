@@ -39,13 +39,13 @@ namespace Google.MaterialDesign.Icons
             base.richText = false;
             base.verticalAlignment = VerticalAlignmentOptions.Middle;
             base.horizontalAlignment = HorizontalAlignmentOptions.Center;
-            base.fontSize = Mathf.FloorToInt(Mathf.Min(base.rectTransform.rect.width, base.rectTransform.rect.height));
+            base.fontSize = Mathf.Min(base.rectTransform.rect.width, base.rectTransform.rect.height);
         }
 
         protected override void OnRectTransformDimensionsChange()
         {
             base.OnRectTransformDimensionsChange();
-            base.fontSize = Mathf.FloorToInt(Mathf.Min(base.rectTransform.rect.width, base.rectTransform.rect.height));
+            base.fontSize = Mathf.Min(base.rectTransform.rect.width, base.rectTransform.rect.height);
         }
 
 #if UNITY_EDITOR
