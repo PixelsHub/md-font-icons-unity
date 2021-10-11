@@ -39,13 +39,17 @@ namespace Google.MaterialDesign.Icons
             base.richText = false;
             base.verticalAlignment = VerticalAlignmentOptions.Middle;
             base.horizontalAlignment = HorizontalAlignmentOptions.Center;
-            base.fontSize = Mathf.Min(base.rectTransform.rect.width, base.rectTransform.rect.height);
+            base.fontSizeMin = 0;
+            base.fontSizeMax = Mathf.Min(base.rectTransform.rect.width, base.rectTransform.rect.height);
+            base.enableAutoSizing = true;
+            //base.fontSize = Mathf.Min(base.rectTransform.rect.width, base.rectTransform.rect.height);
         }
 
         protected override void OnRectTransformDimensionsChange()
         {
             base.OnRectTransformDimensionsChange();
-            base.fontSize = Mathf.Min(base.rectTransform.rect.width, base.rectTransform.rect.height);
+            base.fontSizeMax = Mathf.Min(base.rectTransform.rect.width, base.rectTransform.rect.height);
+            //base.fontSize = Mathf.Min(base.rectTransform.rect.width, base.rectTransform.rect.height);
         }
 
 #if UNITY_EDITOR
@@ -64,14 +68,13 @@ namespace Google.MaterialDesign.Icons
             base.OnValidate();
             base.SetLayoutDirty();
         }
-
+#endif
         public void UpdateIcon(MDTextIcon icon)
         {
             this.icon = icon;
             LoadFont();
             base.text = icon.Text;
         }
-#endif
 
     }
 
