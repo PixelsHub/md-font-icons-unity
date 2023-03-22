@@ -28,6 +28,14 @@ Just add a `Material Icon UGUI` on a canvas for the UGUI version (using Unity's 
 ### Latest icons update
 
 Download fonts from https://github.com/google/material-design-icons/tree/master/font and overwrite existing assets in package's Fonts folder.
+Use Unity to regenerate the Font Atlas of each desired Font Asset pasting the hex character sequence found in each corresponding codepoints .txt file.
+Actions for fast copy-paste:
+  - Select all (Ctrl+A)
+  - Set all lines with carets at end of line (Alt+Shift+I)
+  - Move to first line and delete non-hex characters
+  - Move to end of line, add a comma ',' and delete the space
+  - Remove added comma at end of file
+  - Copy all
 
 ## Credits
 
