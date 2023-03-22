@@ -14,6 +14,8 @@ The original was developed on Unity 2017, this fork was developed in Unity 2020 
 1. Open Unity's Package Manager, click the `+` button and select `Add package from git URL`
 2. Copy `https://github.com/PixelsHub/md-font-icons-unity.git?path=/com.pixelshub.mdfonticons` in the text box and confirm, the package should install.
 
+After an update in this repo, the package in Unity may not update as expected. If needed, remove and re-add the package as explained to ensure an update.
+
 ### Manually
 
 Just copy the `com.pixelshub.mdfonticons` folder into your Unity Project assets or packages folder.
@@ -36,6 +38,7 @@ Actions for fast copy-paste:
   - Move to end of line, add a comma ',' and delete the space
   - Remove added comma at end of file
   - Copy all
+  
 
 ## Credits
 
