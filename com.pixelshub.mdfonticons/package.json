@@ -1,6 +1,6 @@
 {
   "name": "com.pixelshub.mdfonticons",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "displayName": "Material Design Font Icons",
   "description": "Adds new scripts for showing Material Design icons as text. Works with UGUI and TextmeshPro",
   "unity": "2019.1",
