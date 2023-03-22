@@ -25,6 +25,10 @@ Just add a `Material Icon UGUI` on a canvas for the UGUI version (using Unity's 
 
 ![preview](doc/preview.png)
 
+### Latest icons update
+
+Download fonts from https://github.com/google/material-design-icons/tree/master/font and overwrite existing assets in package's Fonts folder.
+
 ## Credits
 
 This project is a fork/improvement from [Convalise/unity-material-icons](https://github.com/convalise/unity-material-icons).
