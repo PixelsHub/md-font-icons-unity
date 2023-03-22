@@ -26,8 +26,11 @@ namespace Google.MaterialDesign.Icons
 
         void LoadFont()
         {
-            base.font = (TMP_FontAsset)icon.Font.TMP_Font;
-            base.LoadFontAsset();
+            if(icon != null)
+            {
+                base.font = (TMP_FontAsset)icon.Font.TMP_Font;
+                base.LoadFontAsset();
+            }
         }
 
         void Init()
@@ -62,9 +65,12 @@ namespace Google.MaterialDesign.Icons
 
         protected override void OnValidate()
         {
-            base.font = (TMP_FontAsset)icon.Font.TMP_Font;
-            base.text = icon.Text;
-            base.LoadFontAsset();
+            if(icon != null)
+            {
+                base.font = (TMP_FontAsset)icon.Font.TMP_Font;
+                base.text = icon.Text;
+                base.LoadFontAsset();
+            }
             base.OnValidate();
             base.SetLayoutDirty();
         }
