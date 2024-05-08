@@ -1,3 +1,9 @@
+> [!WARNING]  
+> El proyecto original del que deriva éste está **DEPRECADO**. Esta copia originalmente era para corregir algunos problemas y, principalmente, convertir el proyecto en un Package.
+> El proyecto que reemplaza al actual https://github.com/convalise/unity-material-symbols ya está hecho como package, se debe usar en lugar de éste.
+
+
+
 
 # Material Design Font Icons for Unity
 
